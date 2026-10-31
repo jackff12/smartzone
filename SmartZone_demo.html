@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartZone — Smartphones & Technologie</title>
+<style>
+:root{--ink:#101828;--muted:#667085;--blue:#246bfe;--blue2:#eaf1ff;--line:#e8ecf2;--bg:#f7f9fc;--white:#fff;--green:#138a58}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer;border:0}
+.top{background:#101828;color:#fff;text-align:center;padding:9px 14px;font-size:12px;letter-spacing:.3px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav{max-width:1180px;margin:auto;display:flex;align-items:center;gap:24px;padding:17px 22px}
+.logo{font-size:24px;font-weight:900;letter-spacing:-1px;white-space:nowrap}.logo span{color:var(--blue)}
+.navlinks{display:flex;gap:20px;font-size:14px;color:#475467}.navlinks a:hover{color:var(--blue)}
+.search{margin-left:auto;display:flex;align-items:center;background:#f3f5f9;border:1px solid #edf0f5;border-radius:12px;padding:10px 12px;min-width:210px}
+.search input{border:0;outline:0;background:transparent;width:100%;font-size:13px}
+.cart{background:var(--blue);color:white;border-radius:12px;padding:11px 15px;font-weight:700;white-space:nowrap}
+main{max-width:1180px;margin:26px auto;padding:0 22px}
+.hero{background:linear-gradient(115deg,#101828 0%,#173b80 60%,#246bfe 100%);color:#fff;border-radius:24px;min-height:300px;display:grid;grid-template-columns:1.2fr .8fr;overflow:hidden;position:relative}
+.hero-copy{padding:46px 42px;z-index:1}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#b8d0ff;font-weight:800}
+.hero h1{font-size:clamp(30px,4vw,48px);line-height:1.08;margin:15px 0 12px;letter-spacing:-1.6px}.hero p{color:#dce7ff;max-width:430px;line-height:1.6;font-size:15px}
+.primary{display:inline-block;background:#fff;color:#153a82;padding:13px 19px;border-radius:11px;font-weight:800;margin-top:12px}
+.hero-art{display:flex;align-items:center;justify-content:center;font-size:150px;position:relative}.hero-art:before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:#ffffff15}
+.hero-art span{filter:drop-shadow(0 25px 25px #0005);transform:rotate(-10deg);z-index:1}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0 35px}
+.benefit{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px;display:flex;gap:12px;align-items:center}.benefit .ico{font-size:23px}.benefit strong{display:block;font-size:13px}.benefit small{color:var(--muted);font-size:12px}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin:30px 0 18px}.section-head h2{margin:0;font-size:25px;letter-spacing:-.7px}.section-head p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.filter{background:#fff;border:1px solid var(--line);padding:9px 14px;border-radius:999px;font-size:13px;color:#475467}.filter.active,.filter:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;transition:.2s;position:relative}.card:hover{transform:translateY(-4px);box-shadow:0 12px 30px #10182812}
+.badge{position:absolute;top:13px;left:13px;background:#eafaf2;color:var(--green);font-size:10px;font-weight:800;padding:6px 8px;border-radius:7px}
+.product-art{height:175px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#f8faff,#eef3fb);border-radius:12px;margin-bottom:14px;font-size:84px}
+.brand{font-size:10px;color:var(--blue);font-weight:900;letter-spacing:1px;text-transform:uppercase}.card h3{font-size:15px;margin:6px 0}.spec{color:var(--muted);font-size:11px;min-height:30px;line-height:1.5}
+.price-row{display:flex;align-items:center;gap:8px;margin:12px 0}.price{font-size:18px;font-weight:900}.old{font-size:12px;color:#98a2b3;text-decoration:line-through}
+.add{width:100%;background:#101828;color:#fff;padding:11px;border-radius:10px;font-weight:700;font-size:12px}.add:hover{background:var(--blue)}
+.promo{margin:34px 0;background:var(--blue2);border-radius:18px;padding:25px;display:flex;align-items:center;justify-content:space-between;gap:20px}.promo h3{margin:0 0 6px;font-size:20px}.promo p{margin:0;color:var(--muted);font-size:13px}.promo b{color:var(--blue);font-size:25px}
+footer{background:#101828;color:#d0d5dd;margin-top:45px;padding:30px 22px}.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer-inner strong{color:#fff}.footer-inner small{line-height:1.8}
+.overlay{display:none;position:fixed;inset:0;background:#10182880;z-index:10;justify-content:flex-end}.overlay.open{display:flex}.drawer{background:#fff;width:min(420px,100%);height:100%;padding:24px;overflow:auto}.drawer-head{display:flex;justify-content:space-between;align-items:center}.drawer h2{margin:0}.close{background:#f2f4f7;border-radius:9px;padding:8px 12px}.cart-item{display:flex;gap:12px;border-bottom:1px solid var(--line);padding:15px 0}.cart-item .mini{font-size:36px;background:#f3f6fb;border-radius:10px;padding:8px}.cart-item strong{font-size:13px}.cart-item small{display:block;color:var(--muted);margin-top:5px}.remove{background:none;color:#d92d20;font-size:12px;margin-top:7px;padding:0}.total{display:flex;justify-content:space-between;font-weight:900;font-size:18px;margin:20px 0}.demo-note{font-size:11px;color:var(--muted);line-height:1.5;background:#f8fafc;padding:12px;border-radius:10px}
+@media(max-width:850px){.nav{gap:12px;flex-wrap:wrap}.navlinks{order:3;width:100%;justify-content:center}.search{min-width:130px}.hero{grid-template-columns:1fr}.hero-copy{padding:32px 28px}.hero-art{display:none}.grid{grid-template-columns:repeat(2,1fr)}.benefits{grid-template-columns:1fr}.promo{align-items:flex-start;flex-direction:column}}
+@media(max-width:480px){main{padding:0 13px}.nav{padding:14px}.navlinks{gap:13px;font-size:12px}.search{order:4;width:100%;margin:0}.logo{font-size:21px}.grid{gap:10px}.card{padding:9px}.product-art{height:135px;font-size:66px}.card h3{font-size:13px}.price{font-size:16px}.hero h1{font-size:32px}.section-head h2{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="top">✨ Offre de bienvenue : livraison gratuite dès 300 DT — Site de démonstration</div>
+<header><div class="nav">
+  <a class="logo" href="#">Smart<span>Zone</span>.</a>
+  <nav class="navlinks"><a href="#accueil">Accueil</a><a href="#produits">Smartphones</a><a href="#promos">Promotions</a><a href="#contact">Contact</a></nav>
+  <label class="search">⌕ <input id="search" placeholder="Rechercher un téléphone..." aria-label="Rechercher"></label>
+  <button class="cart" onclick="openCart()">Panier <span id="cartCount">0</span></button>
+</div></header>
+<main id="accueil">
+  <section class="hero">
+    <div class="hero-copy"><div class="eyebrow">La technologie à portée de main</div><h1>Le smartphone<br>qui vous ressemble.</h1><p>Découvrez les dernières nouveautés, des performances incroyables et un design qui fait la différence.</p><a class="primary" href="#produits">Découvrir la collection →</a></div>
+    <div class="hero-art"><span>📱</span></div>
+  </section>
+  <section class="benefits">
+    <div class="benefit"><span class="ico">🚚</span><div><strong>Livraison rapide</strong><small>Partout en Tunisie</small></div></div>
+    <div class="benefit"><span class="ico">🛡️</span><div><strong>Garantie incluse</strong><small>Pour une tranquillité d’esprit</small></div></div>
+    <div class="benefit"><span class="ico">💬</span><div><strong>Support client</strong><small>Nous sommes là pour vous</small></div></div>
+  </section>
+  <div class="section-head" id="produits"><div><h2>Nos smartphones</h2><p>Les modèles incontournables du moment.</p></div></div>
+  <div class="filters">
+    <button class="filter active" data-brand="Tous">Tous</button><button class="filter" data-brand="Apple">Apple</button><button class="filter" data-brand="Samsung">Samsung</button><button class="filter" data-brand="Xiaomi">Xiaomi</button>
+  </div>
+  <section class="grid" id="grid"></section>
+  <section class="promo" id="promos"><div><h3>La technologie, au meilleur prix.</h3><p>Explorez nos offres sélectionnées et trouvez votre prochain smartphone.</p></div><b>Jusqu’à -20%</b></section>
+  <section class="section-head" id="contact"><div><h2>Une question ?</h2><p>Contactez notre équipe : bonjour@smartzone-demo.tn · +216 70 000 000</p></div></section>
+</main>
+<footer><div class="footer-inner"><div><strong class="logo">Smart<span style="color:#7da7ff">Zone</span>.</strong><br><small>Votre univers smartphone.<br>© 2026 SmartZone — Démonstration scolaire.</small></div><small>Accueil　 ·　 Smartphones　 ·　 Promotions　 ·　 Contact<br>Les produits, prix et coordonnées présentés sont fictifs.</small></div></footer>
+<div class="overlay" id="overlay" onclick="outsideClose(event)"><aside class="drawer"><div class="drawer-head"><h2>Votre panier</h2><button class="close" onclick="closeCart()">✕</button></div><div id="cartItems"></div><div class="total"><span>Total</span><span id="total">0 DT</span></div><p class="demo-note">Mode démonstration : aucune commande ni aucun paiement ne sera effectué.</p></aside></div>
+<script>
+const products=[
+ {id:1,brand:"Apple",name:"iPhone 15",spec:"128 Go · Écran Super Retina XDR",price:2899,old:3199,emoji:"📱",badge:"-9%"},
+ {id:2,brand:"Samsung",name:"Galaxy S24",spec:"256 Go · Dynamic AMOLED 2X",price:2699,old:2999,emoji:"📲",badge:"Best-seller"},
+ {id:3,brand:"Xiaomi",name:"Redmi Note 13 Pro",spec:"256 Go · Appareil photo 200 MP",price:1099,old:1299,emoji:"📱",badge:"-15%"},
+ {id:4,brand:"Apple",name:"iPhone 14",spec:"128 Go · Puce A15 Bionic",price:2299,old:2499,emoji:"📱",badge:"-8%"},
+ {id:5,brand:"Samsung",name:"Galaxy A55",spec:"128 Go · Super AMOLED 6,6″",price:1499,old:0,emoji:"📲",badge:"Nouveau"},
+ {id:6,brand:"Xiaomi",name:"Redmi 13C",spec:"128 Go · Batterie 5000 mAh",price:599,old:699,emoji:"📱",badge:"-14%"},
+ {id:7,brand:"Samsung",name:"Galaxy Z Flip5",spec:"256 Go · Écran pliable",price:2999,old:3399,emoji:"📲",badge:"-12%"},
+ {id:8,brand:"Apple",name:"iPhone 13",spec:"128 Go · Double appareil photo",price:1899,old:0,emoji:"📱",badge:"Bon plan"}
+];
+let activeBrand="Tous",cart=[];
+const fmt=n=>n.toLocaleString("fr-FR")+" DT";
+function render(){
+ const term=document.getElementById("search").value.toLowerCase();
+ const list=products.filter(p=>(activeBrand==="Tous"||p.brand===activeBrand)&&(p.name+" "+p.brand).toLowerCase().includes(term));
+ document.getElementById("grid").innerHTML=list.map(p=>`<article class="card"><span class="badge">${p.badge}</span><div class="product-art">${p.emoji}</div><div class="brand">${p.brand}</div><h3>${p.name}</h3><div class="spec">${p.spec}</div><div class="price-row"><span class="price">${fmt(p.price)}</span>${p.old?`<span class="old">${fmt(p.old)}</span>`:""}</div><button class="add" onclick="addToCart(${p.id})">＋ Ajouter au panier</button></article>`).join("")||"<p>Aucun produit trouvé.</p>";
+}
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");activeBrand=b.dataset.brand;render()}));
+document.getElementById("search").addEventListener("input",render);
+function addToCart(id){const item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({id,qty:1});updateCart();openCart()}
+function updateCart(){document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0);document.getElementById("cartItems").innerHTML=cart.length?cart.map(x=>{const p=products.find(y=>y.id===x.id);return `<div class="cart-item"><div class="mini">${p.emoji}</div><div><strong>${p.name}</strong><small>${fmt(p.price)} · Quantité : ${x.qty}</small><button class="remove" onclick="removeItem(${p.id})">Retirer</button></div></div>`}).join(""):"<p style='color:#667085;margin-top:24px'>Votre panier est vide pour le moment.</p>";document.getElementById("total").textContent=fmt(cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0))}
+function removeItem(id){cart=cart.filter(x=>x.id!==id);updateCart()}
+function openCart(){document.getElementById("overlay").classList.add("open");updateCart()}
+function closeCart(){document.getElementById("overlay").classList.remove("open")}
+function outsideClose(e){if(e.target.id==="overlay")closeCart()}
+render();updateCart();
+</script>
+</body>
+</html>
